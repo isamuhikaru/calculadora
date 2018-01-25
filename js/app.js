@@ -1,5 +1,6 @@
 var calculadora = {
-  presion_botones:function(){
+//Función para presionar y soltar los botones:
+  presion_teclas:function(){
     var teclas = document.getElementsByClassName("tecla"); 
 
     var boton_apretado = function(){
@@ -19,34 +20,57 @@ var calculadora = {
     for (var i = 0; i < teclas.length; i++) {
         teclas[i].addEventListener("mouseup", boton_soltado);
       };
-  }//aqui va la coma
-};
-
-calculadora.presion_botones();
-
-/*-----------------------------------------------------------------------------------------*/
-
+  },
+  ingreso_numeros: function(){
 var teclas_numericas = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39"); 
 
 visualizar_numero = function(){
-//Condicional para quitar el cero inicial:
-  if (document.getElementById("display").innerHTML == "0") {
-    var padre = document.getElementsByClassName("pantalla")[0];//Este es el padre
-    cero_inicial = document.getElementById("display");//Elemento a remover
-    padre.removeChild(cero_inicial);//Remoción de elemento
+  //Condicional para quitar el cero inicial:
+    if (document.getElementById("display").innerHTML == "0") {
+      var padre = document.getElementsByClassName("pantalla")[0];//Este es el padre
+      cero_inicial = document.getElementById("display");//Elemento a remover
+      padre.removeChild(cero_inicial);//Remoción de elemento
+    };
+      var numero_elemento = document.createElement("span");//Se crea un elemento span
+      contenido = document.createTextNode(this.id);//Contenido del elemento
+      numero_elemento.setAttribute("id","display");//Se le ingresa una clase
+      numero_elemento.appendChild(contenido);//Se adjunta el elemento con el contenido
+      var padre = document.getElementsByClassName("pantalla")[0];//Este es el padre
+      padre.appendChild(numero_elemento);//Se inserta el elemento a la pantalla
+
+      if (document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[3]) {
+         eliminacion_elementos1 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[1];
+         eliminacion_elementos2 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[2];
+         eliminacion_elementos3 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[3];
+        var padre = document.getElementsByClassName("pantalla")[0];
+        padre.removeChild(eliminacion_elementos1);//Remoción de elemento
+        padre.removeChild(eliminacion_elementos2);//Remoción de elemento
+        padre.removeChild(eliminacion_elementos3);//Remoción de elemento
+        document.getElementById("display").innerHTML = "error";
+      };
   };
-    var numero_elemento = document.createElement("span");//Se crea un elemento span
-    contenido = document.createTextNode(this.id);//Contenido del elemento
-    numero_elemento.setAttribute("id","display");//Se le ingresa una clase
-    numero_elemento.appendChild(contenido);//Se adjunta el elemento con el contenido
-    var padre = document.getElementsByClassName("pantalla")[0];//Este es el padre
-    padre.appendChild(numero_elemento);//Se inserta el elemento a la pantalla
+    //Este ciclo reparte la funcionalidad a todas las teclas:  
+    for (var i = 0; i < teclas_numericas.length; i++) {
+      teclas_numericas[i].addEventListener("click", visualizar_numero);
+    };
+  }//aqui va la coma
 };
 
-//Este ciclo reparte la funcionalidad a todas las teclas:  
-for (var i = 0; i < teclas_numericas.length; i++) {
-  teclas_numericas[i].addEventListener("click", visualizar_numero);
-};
+calculadora.presion_teclas();
+calculadora.ingreso_numeros();
+
+/*---------------------------------------------------------------------------------------------*/
+
+
+
+
+
+  
+
+
+
+
+
 
 
 
