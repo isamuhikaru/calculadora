@@ -28,7 +28,7 @@ var calculadora = {
             var teclas_numericas = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39");
 
             visualizar_numero = function() {
-                //Condicional para quitar el cero inicial:
+                //Condicional para dejar el cero inicial:
                 if (document.getElementById("display").innerHTML == "0") {
                     var padre = document.getElementsByClassName("pantalla")[0]; //Este es el padre
                     cero_inicial = document.getElementById("display"); //Elemento a remover
@@ -67,11 +67,36 @@ var calculadora = {
 //Área del error por siempre:
                     var teclas_error = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39");
                     var error_forever = function() {
-                        if (document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML == "error") {
-                            span_error = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[1];
-                            var papi = document.getElementsByClassName("pantalla")[0];
-                            papi.removeChild(span_error); //Remoción de elemento
+
+
+
+                  if (document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML == "error") {
+
+                    var papirrin = document.getElementsByClassName("pantalla")[0];
+                      if (papirrin.hasChildNodes()){
+                        while ( papirrin.childNodes.length >= 2 ){
+                        papirrin.removeChild( papirrin.firstChild );
                         };
+                      document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML = "error";
+                      };
+
+
+
+                  }
+
+                  // if (document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML == "error") {
+                  //     var span_error = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[1];
+                  //     var papi = document.getElementsByClassName("pantalla")[0];
+                  //     papi.removeChild(span_error); //Remoción de elemento
+                  // };
+
+
+
+
+
+
+
+
                     };
                     for (var i = 0; i < teclas_error.length; i++) {
                         teclas_error[i].addEventListener("click", error_forever);
@@ -90,3 +115,20 @@ calculadora.presion_teclas();
 calculadora.ingreso_numeros();
 
 /*---------------------------------------------------------------------------------------------*/
+
+
+var on_c = document.getElementById("on");
+var reseteada = function(){
+
+  var papirrin = document.getElementsByClassName("pantalla")[0];
+  if (papirrin.hasChildNodes()){
+    while ( papirrin.childNodes.length >= 2 ){
+    papirrin.removeChild( papirrin.firstChild );
+    };
+  document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML = "0";
+  };
+
+};
+on_c.addEventListener("click", reseteada);
+
+
