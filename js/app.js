@@ -23,95 +23,104 @@ var calculadora = {
         };
     },
 
-    //Área de impresión de números en pantalla:
-    ingreso_numeros: function() {
-        var teclas_numericas = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39");
+    plasmar_numeros: function() {
+        var teclas = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39, #\\.");
 
-        visualizar_numero = function() {
-            //Condicional para dejar el cero inicial:
-            if (document.getElementById("display").innerHTML == "0") {
-                var padre = document.getElementsByClassName("pantalla")[0]; //Este es el padre
-                cero_inicial = document.getElementById("display"); //Elemento a remover
-                padre.removeChild(cero_inicial); //Remoción de elemento
-            };
-            var numero_elemento = document.createElement("span"); //Se crea un elemento span
-            contenido = document.createTextNode(this.id); //Contenido del elemento
-            numero_elemento.setAttribute("id", "display"); //Se le ingresa una clase
-            numero_elemento.appendChild(contenido); //Se adjunta el elemento con el contenido
-            var padre = document.getElementsByClassName("pantalla")[0]; //Este es el padre
-            padre.appendChild(numero_elemento); //Se inserta el elemento a la pantalla
-
-            //Área de limite de caracteres:
-            if (document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[9]) {
-                eliminacion_elementos1 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[1];
-                eliminacion_elementos2 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[2];
-                eliminacion_elementos3 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[3];
-                eliminacion_elementos4 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[4];
-                eliminacion_elementos5 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[5];
-                eliminacion_elementos6 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[6];
-                eliminacion_elementos7 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[7];
-                eliminacion_elementos8 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[8];
-                eliminacion_elementos9 = document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[9];
-                var padre = document.getElementsByClassName("pantalla")[0];
-                padre.removeChild(eliminacion_elementos1); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos2); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos3); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos4); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos5); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos6); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos7); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos8); //Remoción de elemento
-                padre.removeChild(eliminacion_elementos9); //Remoción de elemento
-                document.getElementById("display").innerHTML = "error";
-
-                //Área del error por siempre:
-                var teclas_error = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39");
-                var error_forever = function() {
-
-                    if (document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML == "error") {
-
-                        var papirrin = document.getElementsByClassName("pantalla")[0];
-                        if (papirrin.hasChildNodes()) {//Aquí se señala a los hijos de un elemento
-                            while (papirrin.childNodes.length >= 2) {//Aquí se le dice "mientras" que su extensión sea mayor o igual a 2 hijos
-                                papirrin.removeChild(papirrin.firstChild);//Aquí se elimina los hijos de un elemento
-                            };
-                            document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML = "error";
-                        };
-                    }
-
-                };
-                for (var i = 0; i < teclas_error.length; i++) {
-                    teclas_error[i].addEventListener("click", error_forever);
-                };
-            };
-
+        var accion_de_incrustar = function() {
+            var escritura = document.getElementById("display");
+            escritura.innerHTML = escritura.innerHTML + this.id;
+            //escritura.innerHTML += this.id ;
         };
+
         //Este ciclo reparte la funcionalidad a todas las teclas:  
-        for (var i = 0; i < teclas_numericas.length; i++) {
-            teclas_numericas[i].addEventListener("click", visualizar_numero);
+        for (var i = 0; i < teclas.length; i++) {
+            teclas[i].addEventListener("click", accion_de_incrustar);
         };
+
     },
 
-    // Área de reset del ON/C
-    accion_de_reset: function() {
-            var on_c = document.getElementById("on");
-            var reseteada = function() {
+    quitar_cero_inicial: function() {
+        var teclas = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39, #\\.");
 
-                var papote = document.getElementsByClassName("pantalla")[0];
-                if (papote.hasChildNodes()) { //Aquí se señala a los hijos de un elemento
-                    while (papote.childNodes.length >= 2) {//Aquí se le dice "mientras" que su extensión sea mayor o igual a 2 hijos
-                        papote.removeChild(papote.firstChild);//Aquí se elimina los hijos de un elemento
-                    };
-                    document.getElementsByClassName("pantalla")[0].getElementsByTagName("span")[0].innerHTML = "0";
-                };
-
+        var cero_inicial = function() {
+            if (document.getElementById("display").innerHTML.charAt(0) == "0") {
+                document.getElementById("display").innerHTML = this.id;
             };
-            on_c.addEventListener("click", reseteada);
-        } //Aquí va la coma
+        };
+
+        //Este ciclo reparte la funcionalidad a todas las teclas:  
+        for (var i = 0; i < teclas.length; i++) {
+            teclas[i].addEventListener("click", cero_inicial);
+        };
+
+    },
+
+    limite_de_caracteres: function() {
+        var teclas = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39, #\\.");
+
+        var maximo_de_caracteres = function() {
+            if (document.getElementById("display").innerHTML.length >= 9) {
+                var caracteres_escritos = document.getElementById("display").innerHTML;
+                var limite = caracteres_escritos.substr(0, 10);
+                document.getElementById("display").innerHTML = limite;
+            };
+        };
+
+        //Este ciclo reparte la funcionalidad a todas las teclas:  
+        for (var i = 0; i < teclas.length; i++) {
+            teclas[i].addEventListener("click", maximo_de_caracteres);
+        };
+
+    },
+
+    error_por_siempre: function(){
+       var teclas = document.querySelectorAll("#\\30, #\\31, #\\32, #\\33, #\\34, #\\35, #\\36, #\\37, #\\38, #\\39, #\\.");
+
+       var incrustar_error = function() {
+           if (document.getElementById("display").innerHTML.length >= 10) {
+               var ubicacion_error = document.getElementById("display").innerHTML;
+               var palabra_reemplazo = ubicacion_error.replace(this.innerHTML, "error");
+               document.getElementById("display").innerHTML = palabra_reemplazo;
+
+               var caracteres_escritos = document.getElementById("display").innerHTML;
+               var limite = caracteres_escritos.substr(0, 5);
+               document.getElementById("display").innerHTML = limite;
+           };
+
+           if (document.getElementById("display").innerHTML == "error0"
+            || document.getElementById("display").innerHTML == "error1"
+            || document.getElementById("display").innerHTML == "error2"
+            || document.getElementById("display").innerHTML == "error3"
+            || document.getElementById("display").innerHTML == "error4"
+            || document.getElementById("display").innerHTML == "error5"
+            || document.getElementById("display").innerHTML == "error6"
+            || document.getElementById("display").innerHTML == "error7"
+            || document.getElementById("display").innerHTML == "error8"
+            || document.getElementById("display").innerHTML == "error9"
+            || document.getElementById("display").innerHTML == "error.") {
+               var caracteres_escritos_despues_de_error = document.getElementById("display").innerHTML;
+               var limite = caracteres_escritos_despues_de_error.slice(0, 5);
+               document.getElementById("display").innerHTML = limite; 
+           };
+       };
+
+       //Este ciclo reparte la funcionalidad a todas las teclas:  
+       for (var i = 0; i < teclas.length; i++) {
+           teclas[i].addEventListener("click", incrustar_error);
+       };
+
+    }//Aquí va la coma
 };
 
 calculadora.presion_teclas();
-calculadora.ingreso_numeros();
-calculadora.accion_de_reset();
+calculadora.plasmar_numeros();
+calculadora.quitar_cero_inicial();
+calculadora.limite_de_caracteres();
+calculadora.error_por_siempre();
+
 
 /*---------------------------------------------------------------------------------------------*/
+
+
+
+
