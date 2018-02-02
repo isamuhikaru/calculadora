@@ -133,7 +133,7 @@ var calculadora = {
     //Este reparte la funcionalidad a la tecla:
     on_c.addEventListener("click", maximo_de_caracteres);
 
-  }, 
+  },
 
   plasmar_mas_menos: function() {
     var positivo_negativo = document.getElementById("sign");
@@ -187,6 +187,10 @@ var calculadora = {
         var limite = caracteres_escritos_despues_de_error.slice(0, 5);
         document.getElementById("display").innerHTML = limite;
       };
+      if (document.getElementById("display").innerHTML == ".") {
+        document.getElementById("display").innerHTML = "0.";
+      };
+
     };
 
     //Este reparte la funcionalidad a la tecla:
@@ -210,3 +214,96 @@ var calculadora = {
 calculadora.inicializar();
 
 /*---------------------------------------------------------------------------------------------*/
+
+var espacio_blanco = document.querySelectorAll("#mas, #menos, #por, #dividido, #raiz");
+
+var blanco = function() {
+    document.getElementById("display").innerHTML = "";
+};
+
+//Este ciclo reparte la funcionalidad a todas las teclas:
+for (var i = 0; i < espacio_blanco.length; i++) {
+  espacio_blanco[i].addEventListener("click", blanco);
+};
+
+
+
+
+
+
+//
+// var secta = document.getElementById(".");
+//
+// var core = function() {
+//     if (document.getElementById("display").innerHTML == ".") {
+//       document.getElementById("display").innerHTML = "0.";
+//     };
+// };
+//
+// //Este ciclo reparte la funcionalidad a todas las teclas:
+//   secta.addEventListener("click", core);
+
+
+
+
+
+// var igual = document.getElementById("igual");
+//
+// var operaciones = function(){
+//
+// var primer_valor = parseFloat(document.getElementById("igual").innerHTML);
+// var segundo_valor = parseFloat(document.getElementById("igual").innerHTML);
+//
+// var opcion = document.getElementById("mas");
+// var opcion = document.getElementById("menos");
+// var opcion = document.getElementById("por");
+// var opcion = document.getElementById("dividido");
+// var opcion = document.getElementById("raiz");
+//
+//   switch(operacion){
+//     case "mas":
+//       this.resultado = eval(primer_valor + segundo_valor);
+//     break;
+//     case "menos":
+//       this.resultado = eval(primer_valor - segundo_valor);
+//     break;
+//     case "por":
+//       this.resultado = eval(primer_valor * segundo_valor);
+//     break;
+//     case "dividido":
+//       this.resultado = eval(primer_valor / segundo_valor);
+//     break;
+//     case "raiz":
+//       this.resultado = eval(Math.sqrt(primerValor));
+//   };
+// };
+//
+// igual.addEventListener("click", operaciones);
+
+//
+//
+// var igual = document.getElementById("igual");
+// var resultado = document.getElementById("igual").innerHTML;
+//
+// var operaciones = function(primer_valor, segundo_valor, operacion){
+//   switch(operacion){
+//     case "+":
+//       this.resultado = eval(primer_valor + segundo_valor);
+//     break;
+//     case "-":
+//       this.resultado = eval(primer_valor - segundo_valor);
+//     break;
+//     case "*":
+//       this.resultado = eval(primer_valor * segundo_valor);
+//     break;
+//     case "/":
+//       this.resultado = eval(primer_valor / segundo_valor);
+//     break;
+//     case "raiz":
+//       this.resultado = eval(Math.sqrt(primerValor));
+//   };
+// };
+//
+//
+//
+// igual.addEventListener("click", operaciones( , , ));
