@@ -215,95 +215,69 @@ calculadora.inicializar();
 
 /*---------------------------------------------------------------------------------------------*/
 
-var espacio_blanco = document.querySelectorAll("#mas, #menos, #por, #dividido, #raiz");
+var valor_primero_y_blanco = document.querySelectorAll("#mas, #menos, #por, #dividido, #raiz");
 
-var blanco = function() {
+var valor_a = function() {
+    primer_valor = document.getElementById("display").innerHTML;
     document.getElementById("display").innerHTML = "";
 };
 
 //Este ciclo reparte la funcionalidad a todas las teclas:
-for (var i = 0; i < espacio_blanco.length; i++) {
-  espacio_blanco[i].addEventListener("click", blanco);
+for (var i = 0; i < valor_primero_y_blanco.length; i++) {
+    valor_primero_y_blanco[i].addEventListener("click", valor_a);
 };
 
 
 
+var tecla_operacion = document.querySelectorAll("#mas, #menos, #por, #dividido, #raiz");
+
+var opcion = function() {
+    operacion_elegida = this.id;
+};
+
+//Este ciclo reparte la funcionalidad a todas las teclas:
+for (var i = 0; i < tecla_operacion.length; i++) {
+    tecla_operacion[i].addEventListener("click", opcion);
+};
 
 
 
-//
-// var secta = document.getElementById(".");
-//
-// var core = function() {
-//     if (document.getElementById("display").innerHTML == ".") {
-//       document.getElementById("display").innerHTML = "0.";
-//     };
-// };
-//
-// //Este ciclo reparte la funcionalidad a todas las teclas:
-//   secta.addEventListener("click", core);
+var valor_segundo = document.querySelectorAll("#igual");
+
+var valor_b = function() {
+    segundo_valor = document.getElementById("display").innerHTML;
+};
+
+//Este ciclo reparte la funcionalidad a todas las teclas:
+for (var i = 0; i < valor_segundo.length; i++) {
+    valor_segundo[i].addEventListener("click", valor_b);
+};
 
 
 
+var tecla_igual = document.getElementById("igual");
 
 
-// var igual = document.getElementById("igual");
-//
-// var operaciones = function(){
-//
-// var primer_valor = parseFloat(document.getElementById("igual").innerHTML);
-// var segundo_valor = parseFloat(document.getElementById("igual").innerHTML);
-//
-// var opcion = document.getElementById("mas");
-// var opcion = document.getElementById("menos");
-// var opcion = document.getElementById("por");
-// var opcion = document.getElementById("dividido");
-// var opcion = document.getElementById("raiz");
-//
-//   switch(operacion){
-//     case "mas":
-//       this.resultado = eval(primer_valor + segundo_valor);
-//     break;
-//     case "menos":
-//       this.resultado = eval(primer_valor - segundo_valor);
-//     break;
-//     case "por":
-//       this.resultado = eval(primer_valor * segundo_valor);
-//     break;
-//     case "dividido":
-//       this.resultado = eval(primer_valor / segundo_valor);
-//     break;
-//     case "raiz":
-//       this.resultado = eval(Math.sqrt(primerValor));
-//   };
-// };
-//
-// igual.addEventListener("click", operaciones);
+var opcion = function() {
+    switch (operacion_elegida) {
+        case "mas":
+            resultado_elegido = parseFloat(primer_valor) + parseFloat(segundo_valor);
+            break;
+        case "menos":
+            resultado_elegido = parseFloat(primer_valor) - parseFloat(segundo_valor);
+            break;
+        case "por":
+            resultado_elegido = parseFloat(primer_valor) * parseFloat(segundo_valor);
+            break;
+        case "dividido":
+            resultado_elegido = parseFloat(primer_valor) / parseFloat(segundo_valor);
+            break;
+        case "raiz":
+            resultado_elegido = parseFloat(Math.sqrt(primer_valor));
+            break;
+    };
+    document.getElementById("display").innerHTML = resultado_elegido;
+};
 
-//
-//
-// var igual = document.getElementById("igual");
-// var resultado = document.getElementById("igual").innerHTML;
-//
-// var operaciones = function(primer_valor, segundo_valor, operacion){
-//   switch(operacion){
-//     case "+":
-//       this.resultado = eval(primer_valor + segundo_valor);
-//     break;
-//     case "-":
-//       this.resultado = eval(primer_valor - segundo_valor);
-//     break;
-//     case "*":
-//       this.resultado = eval(primer_valor * segundo_valor);
-//     break;
-//     case "/":
-//       this.resultado = eval(primer_valor / segundo_valor);
-//     break;
-//     case "raiz":
-//       this.resultado = eval(Math.sqrt(primerValor));
-//   };
-// };
-//
-//
-//
-// igual.addEventListener("click", operaciones( , , ));
+//Este ciclo reparte la funcionalidad a todas la tecla:
+tecla_igual.addEventListener("click", opcion);
